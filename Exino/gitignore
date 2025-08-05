@@ -1,0 +1,20 @@
+cat > .gitignore << 'EOL'
+# Xcode
+.DS_Store
+*/xcuserdata
+*.xccheckout
+*.xcworkspace
+*.xcuserstate
+*.xcodeproj/xcuserdata
+*.xcodeproj/project.xcworkspace
+DerivedData
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+EOL

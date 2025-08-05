@@ -1,0 +1,33 @@
+# Xcode
+.DS_Store
+*/xcuserdata/
+*.xccheckout
+*.xcworkspace
+!default.xcworkspace
+xcuserdata/
+DerivedData/
+build/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj
+
+# App specific
+Exino.app
+
+# Wine
+*.wine
+*.winetrickscache
+
+# Logs
+*.log
+
+# Local configuration
+.env
