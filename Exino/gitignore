@@ -1,20 +1,45 @@
-cat > .gitignore << 'EOL'
 # Xcode
 .DS_Store
-*/xcuserdata
+*/xcuserdata/
 *.xccheckout
 *.xcworkspace
-*.xcuserstate
-*.xcodeproj/xcuserdata
-*.xcodeproj/project.xcworkspace
-DerivedData
-build/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-EOL
+!default.xcworkspace
+xcuserdata/
+
+# Swift Package Manager
+.build/
+Packages/
+Package.pins
+Package.resolved
+*.xcodeproj
+
+# App specific
+Exino.app
+DerivedData/
+
+# Wine bottles and caches
+*.wine
+*.winetrickscache
+
+# Logs
+*.log
+
+# Local configuration files
+.env
+.env.local
+
+# Temporary files
+*.swp
+*~
+*.dat
+*.out
+*.tmp
+
+# System files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+.Spotlight-V100
+.Trashes
+__MACOSX

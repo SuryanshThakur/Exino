@@ -51,8 +51,8 @@ struct ConsoleView: View {
                     }
                     .padding(.vertical, 4)
                 }
-                .onChange(of: viewModel.messages) { _ in
-                    if let lastIndex = viewModel.messages.indices.last {
+                .onChange(of: viewModel.messages) { oldValue, newValue in
+                    if let lastIndex = newValue.indices.last, lastIndex >= 0 {
                         withAnimation {
                             scrollView.scrollTo(lastIndex, anchor: .bottom)
                         }

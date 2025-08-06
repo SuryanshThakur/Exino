@@ -1,0 +1,2 @@
+
+Also, like this winetricks and all that I have to install later on can't it be integrated in the application only? So user can use GUI to do all this or maybe it's pre installed when user downloads the app like we have in whiskey?

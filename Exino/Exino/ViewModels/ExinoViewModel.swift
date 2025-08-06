@@ -78,12 +78,21 @@ class ExinoViewModel: ObservableObject {
         runGame(game)
     }
     
+    func addLocalGame(from url: URL) {
+        let gameName = url.deletingPathExtension().lastPathComponent
+        let newGame = Game(name: gameName, executablePath: url.path)
+        installedGames.append(newGame)
+        saveInstalledGames()
+        log("Added local game: \(gameName)", type: .success)
+    }
+
     func handleUninstall(_ game: Game) {
         log("Uninstalling \(game.name)...", type: .info)
         
         // Remove the game from installed games
         if let index = installedGames.firstIndex(where: { $0.id == game.id }) {
             installedGames.remove(at: index)
+            saveInstalledGames()
             log("\(game.name) uninstalled successfully", type: .success)
         }
     }
@@ -128,9 +137,19 @@ class ExinoViewModel: ObservableObject {
     }
     
     private func loadInstalledGames() {
-        // Load installed games from UserDefaults or any other storage
-        // This is a placeholder implementation
+        if let data = UserDefaults.standard.data(forKey: "installedGames") {
+            if let decodedGames = try? JSONDecoder().decode([Game].self, from: data) {
+                installedGames = decodedGames
+                return
+            }
+        }
         installedGames = []
+    }
+
+    private func saveInstalledGames() {
+        if let encoded = try? JSONEncoder().encode(installedGames) {
+            UserDefaults.standard.set(encoded, forKey: "installedGames")
+        }
     }
     
     func checkAndInstallDependencies(completion: @escaping (Bool) -> Void) {
@@ -160,7 +179,6 @@ class ExinoViewModel: ObservableObject {
     
     private func setupWinePrefix(completion: @escaping (Bool) -> Void) {
         let winePrefix = "\(FileManager.default.homeDirectoryForCurrentUser.path)/.wine-gtasa"
-        let winePath = "/opt/homebrew/bin/wine"
         let winebootPath = "/opt/homebrew/bin/wineboot"
         let winetricksPath = "/opt/homebrew/bin/winetricks"
         
